@@ -19,5 +19,14 @@ docker compose run api django-admin.py startproject AliceAPI .
 $ docker compose up -d
 
 
+## MySQL設定
+root user: root
+root password: a1icer00t%
+
+user: alice
+user password: a1icedb% 
+
+
+
 ## コンテナの中に入る
 $ docker compose exec コンテナ名 bash
