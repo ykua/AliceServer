@@ -12,6 +12,7 @@ $ docker compose run app django-admin.py startproject Djangoプロジェクト�
 runコマンドで作成されたコンテナ（UUIDが付帯しているコンテナ名）は削除してもよい。
 
 docker compose run app django-admin.py startproject AliceApp .
+
 docker compose run api django-admin.py startproject AliceAPI .
 
 
