@@ -1,67 +1,84 @@
 version: '3.8'
 
 services:
-  db:
+  servdb:
     platform: linux/amd64  # ARMチップの場合は指定が必要
-    build: ./docker/mysql
-    container_name: mySQL
-    hostname: mysql
+    build: ./docker/servdb
+    container_name: ServDB
+    hostname: servdb
     command: --default-authentication-plugin=mysql_native_password
+    restart: always
     volumes:
-      - db_storage:/var/lib/mysql
+      - db_serv_storage:/var/lib/mysql
+    networks:
+      - container_link
+
+  apidb:
+    platform: linux/amd64  # ARMチップの場合は指定が必要
+    build: ./docker/apidb
+    container_name: ApiDB
+    hostname: apidb
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - db_api_storage:/var/lib/mysql
     networks:
       - container_link
 
   app:
-      build: ./docker/app
-      container_name: AliceApp
-      hostname: app
-      command: python manage.py runserver 0.0.0.0:8000
-      volumes:
-        - ./src/app:/workspace/
-      networks:
+    build: ./docker/app
+    container_name: AliceApp
+    hostname: app
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    volumes:
+      - ./src/app:/workspace/
+    networks:
       - container_link
-      depends_on:
-        - db
+    depends_on:
+      - servdb
 
   api:
     build: ./docker/api
     container_name: DataReceiveAPI
     hostname: api
     command: python manage.py runserver 0.0.0.0:8000
+    restart: always
     volumes:
       - ./src/api:/workspace/
     networks:
-    - container_link
+      - container_link
     depends_on:
-      - app
+      - apidb
 
   # リバースプロキシのためのコンテナ(nginx)
   web:
-      image: steveltn/https-portal:1
-      container_name: Nginx
-      hostname: nginx
-      ports:
-        - 80:80
-        - 443:443
-      environment:
-        DOMAINS: localhost -> http://api:8000  # Djangoコンテナのポートを指定。「,」で繋げて複数指定。
+    image: steveltn/https-portal:1
+    container_name: Nginx
+    hostname: nginx
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      DOMAINS: localhost -> http://api:8000  # Djangoコンテナのポートを指定。「,」で繋げて複数指定。
 #        DOMAINS: services.alicel.jp -> http://app:8000, api.alicel.jp -> http://api:8000;
-        STAGE: local # Choose local or staging or production
-        CLIENT_MAX_BODY_SIZE: 100M
-        # WEBSOCKET: 'true'
-      volumes:
-        - ssl_data:/var/lib/https-portal
-        - ssl_data:/var/log/nginx
-        # - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      networks:
+      STAGE: local # Choose local or staging or production
+      CLIENT_MAX_BODY_SIZE: 100M
+#        WEBSOCKET: 'true'
+    restart: always
+    volumes:
+      - ssl_data:/var/lib/https-portal
+      - ssl_data:/var/log/nginx
+#         - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
       - container_link
-      depends_on:
-        - api
+
 
 volumes:
-  db_storage:
-    name: db_strage
+  db_serv_storage:
+    name: db_serv_storage
+  db_api_storage:
+    name: db_api_storage
   ssl_data:  # SSL証明書格納のためのボリューム
     name: ssl_data
 
