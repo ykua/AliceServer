@@ -2,3 +2,5 @@
 .idea/
 .gitattributes
 .git/
+./docker/mosquitto/data/
+./docker/mosquitto/log/
