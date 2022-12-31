@@ -1,6 +1,7 @@
 # Alice Server
  
 ## プロジェクト開始手順
+コンテナ作成時に初回のみ実行
 
 ## プロジェクトのビルド
 Dockerのディレクトリで実行
@@ -16,7 +17,7 @@ docker compose run app django-admin.py startproject AliceApp .
 docker compose run api django-admin.py startproject AliceAPI .
 
 
-## プロジェクトの構築
+## コンテナの起動
 $ docker compose up -d
 
 
