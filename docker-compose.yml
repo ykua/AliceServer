@@ -21,23 +21,35 @@ services:
     networks:
       - container_link
 
+  # WEBサービスをFlaskで提供するコンテナ
   app:
     build: ./docker/app
     container_name: AliceApp
     hostname: app
-    command: >
-      sh -c "
-      python alice_receiver_main.py &&
-      python manage.py runserver 0.0.0.0:8000
-      "
+    ports:
+      - 8000:5000
+    command: flask run --host=0.0.0.0
     restart: always
     volumes:
-      - ./src/app:/workspace/
+      - ./src/app:/usr/src/app
     networks:
       - container_link
     depends_on:
       - servdb
 
+  # MQTTなどからのリクエストをPythonで処理するコンテナ
+  engine:
+    build: ./docker/engine
+    container_name: AliceEngine
+    hostname: engine
+    command: python alice_receiver_main.py
+    restart: always
+    volumes:
+      - ./src/engine:/workspace/
+    networks:
+      - container_link
+    depends_on:
+      - servdb
 
   mqtt:
     image: eclipse-mosquitto
@@ -57,7 +69,7 @@ services:
       - container_link
 
 
-  # リバースプロキシのためのコンテナ(nginx)
+  # リバースプロキシのためのコンテナ
   web:
     image: steveltn/https-portal
     container_name: Nginx

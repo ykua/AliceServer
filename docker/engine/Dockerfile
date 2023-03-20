@@ -1,9 +1,8 @@
-FROM python:3.11-slim-bullseye
+FROM python:3.10
 
 ENV PYTHONUNBUFFERED 1
-ENV FLASK_APP=app
-#RUN mkdir /workspace/
-WORKDIR /usr/src/app
+RUN mkdir /workspace/
+WORKDIR /workspace/
 COPY requirements.txt /workspace/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
