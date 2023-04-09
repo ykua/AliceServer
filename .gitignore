@@ -4,3 +4,13 @@
 .git/
 ./docker/mosquitto/data/
 ./docker/mosquitto/log/
+.src/app/__pycache__/
+docker/mosquitto/log/mosquitto.log
+src/app/__pycache__/app.cpython-311.pyc
+docker/mosquitto/log/mosquitto.log
+docker/mosquitto/data/mosquitto.db
+docker/mosquitto/data/mosquitto.db
+docker/mosquitto/log/mosquitto.log
+docker/mosquitto/data/mosquitto.db
+docker/mosquitto/log/mosquitto.log
+docker/mosquitto/data/mosquitto.db
