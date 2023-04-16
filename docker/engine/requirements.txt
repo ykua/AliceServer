@@ -1,3 +1,5 @@
 autopep8
 paho-mqtt
 mysql-connector-python
+openai
+discord.py
