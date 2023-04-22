@@ -101,11 +101,11 @@ async def on_message(message):
         MAX_NUM_OF_CONVERSATION = 3
         for i in range(MAX_NUM_OF_CONVERSATION):
             try:
-                receive_msg = await client.wait_for('message', check=check, timeout=10)
+                receive_msg = await client.wait_for('message', check=check, timeout=120)
             except asyncio.TimeoutError:
                 del active_users[message.author]
                 logger.info(f'{message.author}: Timeout')
-                await message.channel.send(f'{message.author.mention}、タイムアウトよ。\nまたコールしてね。')
+                await message.channel.send(f'{message.author.mention}さん、た、タイムアウトです。\nまたコールしてくださいっ。')
                 return
             else:
                 logger.info(f'{message.author} say: {receive_msg.content}')
