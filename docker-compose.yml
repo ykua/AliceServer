@@ -51,20 +51,6 @@ services:
     depends_on:
       - servdb
 
-  # Discord Bot
-  botbotchi:
-    build: ./docker/engine
-    container_name: BotBotchi
-    hostname: botbotchi
-    command: python bot_botchi.py
-    restart: always
-    volumes:
-      - ./src/engine:/workspace/
-    networks:
-      - container_link
-    depends_on:
-      - servdb
-
   # MQTTなどからのリクエストをPythonで処理するコンテナ
   engine:
     build: ./docker/engine
