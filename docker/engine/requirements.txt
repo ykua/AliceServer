@@ -5,4 +5,3 @@ openai
 discord.py
 timeout-decorator
 PyYAML
-å
