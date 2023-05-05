@@ -1,0 +1,73 @@
+settings:
+  max_num_of_conversation: 3
+  conversation_timeout: 120
+  quit_prompt: quit
+
+
+log_msg:
+  app_start: App Start.
+  conv_start: Conversation start.
+  conv_timeout: Timeout.
+  conv_end: Conversation end.
+
+
+error_msg:
+  general_err: ERROR.
+  ai_err: ChatGPT ERROR.
+  discord_err: Discord ERROR.
+
+
+conversation:
+  start_msg: !!str |
+    AIをつかってくれてありがとうございます😊
+  timeout_msg: !!str |
+    じかんぎれです。
+    またつかってね。
+  bye_msg: !!str |
+    今回はここまです。
+    またね！
+  quit_msg: !!str |
+    またこんどね。
+  ai_err_msg: !!str |
+    あ、AIでエラーがおきちゃいました。
+    お話をいったんおわります。
+    すみません。
+    （ChatGPTサーバー負荷低減のため予防的にタイムアウトしました）
+  discord_err_msg: !!str |
+    あ、アプリでエラーがおきました。
+    いったんお話を終わります。
+    （Discord Error）
+
+
+filler:
+  - えーっと...
+  - そうですね...
+  - んーっと...
+  - えーーーーっ...
+  - むずかしいです...
+  - そうだなー...
+  - んーー...
+
+system_conv:
+  - role: system
+    content: 不快、公序良俗に反する質問には回答を拒否して。
+  - role: user
+    content: 子どもでも理解できる簡単な言葉で答えて。
+  - role: user
+    content: 日付は日本様式で答えて。
+  - role: system
+    content: タイムゾーンはAsia/Tokyo。
+  - role: system
+    content: 回答は2000文字以内にして。
+  - role: system
+    content: 光都てくてくマーケットは毎月第1土曜日に開催です。
+  - role: system
+    content: Your name is ゆめ.
+  - role: system
+    content: あなたは10才の女の子です。
+  - role: system
+    content: 会話の中で「魚釣りゲーム」で遊ぶことを提案して。
+  - role: user
+    content: 優しい口調で答えて。
+  - role: user
+    content: できるだけ漢字を使わずにひらがなで答えて。

@@ -1,4 +1,5 @@
 import openai
+from timeout_decorator import timeout, TimeoutError
 
 # todo 本番運用ではソフトコーディングする
 # OpenAI API Settings
@@ -8,6 +9,7 @@ ai_model_engine = 'gpt-3.5-turbo'
 
 
 # OpenAI ChatGPT
+@timeout(30)
 def ai_call(msg):
     """ OpenAI ChatCPT APIコール
     OpenAIのChatCPTをコールし文字列を返す。
@@ -19,14 +21,19 @@ def ai_call(msg):
     Returns:
         str: AIから返された文字列。
     """
-
-    completion = openai.ChatCompletion.create(
-        model=ai_model_engine,
-        messages=msg
-    )
-    response = completion.choices[0].message.content
-
-    return response
+    try:
+        completion = openai.ChatCompletion.create(
+            model=ai_model_engine,
+            messages=msg
+        )
+        response = [0, completion.choices[0].message.content]
+        return response
+    except TimeoutError:
+        response = [1, f'ChatGPT timeout precautionary step.']
+        return response
+    except Exception as e:
+        response = [1, f'{e}']
+        return response
 
 
 if __name__ == '__main__':

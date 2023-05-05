@@ -3,3 +3,6 @@ paho-mqtt
 mysql-connector-python
 openai
 discord.py
+timeout-decorator
+PyYAML
+å
