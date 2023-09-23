@@ -16,10 +16,10 @@ CREATE TABLE IF NOT EXISTS customer
 
 CREATE TABLE IF NOT EXISTS services
 (
-    id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    name     VARCHAR(100) DEFAULT 'construction name',
-    nickname VARCHAR(10),
-    price    INT UNSIGNED,
+    id                      INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name                    VARCHAR(100) DEFAULT 'construction name',
+    construction_alias_name VARCHAR(10),
+    price                   INT UNSIGNED,
     PRIMARY KEY (id)
 );
 
@@ -79,8 +79,8 @@ VALUES (null, '開発テスト', 'test-0', 0);
 INSERT INTO node(id, node_name, registration_code, customer)
 VALUES (null, 'Arduino MKR1010', 'E7476F72-0824-4E65-8F16-4548DC03326E', 1);
 
-INSERT INTO data(id, node, data_type, data_category, data_value, daq_datetime) VALUES (null, 1, 'DAQ', 'test', 1.2, '2022-12-01 12;34;56');
-
+INSERT INTO data(id, node, data_type, data_category, data_value, daq_datetime)
+VALUES (null, 1, 'DAQ', 'test', 1.2, '2022-12-01 12;34;56');
 
 
 # Users

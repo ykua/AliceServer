@@ -1391,3 +1391,15 @@
 1681632531: New client connected from 172.26.0.6:43093 as auto-0D5A1813-95D0-E1F4-6C59-223ABA128A1C (p2, c1, k60).
 1681632658: mosquitto version 2.0.15 terminating
 1681632658: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1695298271: mosquitto version 2.0.18 starting
+1695298271: Config loaded from /mosquitto/config/mosquitto.conf.
+1695298271: Opening ipv4 listen socket on port 1883.
+1695298271: Opening ipv6 listen socket on port 1883.
+1695298271: mosquitto version 2.0.18 running
+1695298306: New connection from 172.18.0.6:51815 on port 1883.
+1695298306: New client connected from 172.18.0.6:51815 as auto-64AA33BC-71D0-FF59-D235-763FC048C76B (p2, c1, k60).
+1695300071: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1695301874: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1695303675: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1695304060: mosquitto version 2.0.18 terminating
+1695304060: Saving in-memory database to /mosquitto/data//mosquitto.db.

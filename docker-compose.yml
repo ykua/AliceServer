@@ -17,7 +17,22 @@ services:
     volumes:
       - db_serv_storage:/var/lib/mysql
       - ./docker/mysql/my.conf:/etc/mysql/conf.d/my.cnf
-      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d:ro  # :roはread-only
+    networks:
+      - container_link
+
+  # MongoDBを提供するコンテナ
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root123
+      MONGO_INITDB_DATABASE: daq
+      TZ: Asia/Tokyo
+    volumes:
+      - db_mongo_storage:/data/db
+      - ./docker/mongo/initdb.d:/docker-entrypoint-initdb.d:ro  # :roはread-only
     networks:
       - container_link
 
@@ -82,7 +97,6 @@ services:
     networks:
       - container_link
 
-
   # リバースプロキシのためのコンテナ
   web:
     image: steveltn/https-portal
@@ -109,7 +123,8 @@ services:
 volumes:
   db_serv_storage:
     name: db_serv_storage
-
+  db_mongo_storage:
+    name: db_mongo_storage
   ssl_data: # SSL証明書格納のためのボリューム
     name: ssl_data
 
