@@ -6,6 +6,18 @@ if (!db.getCollecitonNames().includes('daq')) {
 
 // 初期データコレクションのインサート
 db.daq.insertMany([
-    {name: "data1", value: "sample1"},
-    {name: "data2", value: "sample2"},
+    {
+        node_number: "test-001",
+        data_type: "temperature",
+        data_category: "sensor",
+        daq_value: 0.1,
+        date: ISODate("2023-09-23T00:00:00Z")
+    },
+    {
+        node_number: "test-001",
+        data_type: "temperature",
+        data_category: "sensor",
+        daq_value: 0.25,
+        date: ISODate("2023-09-23T00:00:01Z")
+    },
 ]);

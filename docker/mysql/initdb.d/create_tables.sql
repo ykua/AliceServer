@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS node_settings
 INSERT INTO customer (id, name, nickname, email, customer_status, customer_type)
 VALUES (null, 'Yuichi Kageyama', 'Yuichi', 'kage.you@gmail.com', 'valid', 'internal');
 
-INSERT INTO services(id, name, nickname, price)
+INSERT INTO services(id, name, construction_alias_name, price)
 VALUES (null, '開発テスト', 'test-0', 0);
 
 INSERT INTO node(id, node_name, registration_code, customer)
