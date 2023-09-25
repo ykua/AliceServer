@@ -28,7 +28,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root123
-      MONGO_INITDB_DATABASE: daq
+      MONGO_INITDB_DATABASE: alice
       TZ: Asia/Tokyo
     volumes:
       - db_mongo_storage:/data/db
