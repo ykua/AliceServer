@@ -1448,3 +1448,10 @@
 1695649541: New client connected from 172.22.0.6:43911 as auto-30154E16-B5D7-EE0B-AA40-30B3444415E9 (p2, c1, k60).
 1695649901: mosquitto version 2.0.18 terminating
 1695649901: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1695733717: mosquitto version 2.0.18 starting
+1695733717: Config loaded from /mosquitto/config/mosquitto.conf.
+1695733717: Opening ipv4 listen socket on port 1883.
+1695733717: Opening ipv6 listen socket on port 1883.
+1695733717: mosquitto version 2.0.18 running
+1695733757: New connection from 172.18.0.6:37441 on port 1883.
+1695733757: New client connected from 172.18.0.6:37441 as auto-16F52D65-C7EE-734E-63DF-037491F89647 (p2, c1, k60).

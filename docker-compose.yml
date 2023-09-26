@@ -24,6 +24,8 @@ services:
   # MongoDBを提供するコンテナ
   mongo:
     image: mongo
+    container_name: mongoDB
+    hostname: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -123,8 +125,10 @@ services:
 volumes:
   db_serv_storage:
     name: db_serv_storage
+
   db_mongo_storage:
     name: db_mongo_storage
+
   ssl_data: # SSL証明書格納のためのボリューム
     name: ssl_data
 
