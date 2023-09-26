@@ -34,6 +34,8 @@ services:
       TZ: Asia/Tokyo
     volumes:
       - db_mongo_storage:/data/db
+      - db_mongo_storage:/data/configdb
+      - ./docker/mongo/mongod.conf:/etc/mongod.conf
       - ./docker/mongo/initdb.d:/docker-entrypoint-initdb.d:ro  # :roはread-only
     networks:
       - container_link
