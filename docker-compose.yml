@@ -110,16 +110,20 @@ services:
       - 80:80
       - 443:443
     environment:
-      DOMAINS: localhost -> http://app:8000  # Djangoコンテナのポートを指定。「,」で繋げて複数指定。
+      DOMAINS: 'localhost -> http://app:8000'  # Djangoコンテナのポートを指定。「,」で繋げて複数指定。
       #      DOMAINS: services.alicel.jp -> http://app:8000, mqtt.alicel.jp -> http://mqtt:1883;
       STAGE: local # Choose local or staging or production
+      #FORCE_RENEW: 'true'  # productionにしたらコメントアウトを外す
       CLIENT_MAX_BODY_SIZE: 100M
     #      WEBSOCKET: 'true'
     restart: always
     volumes:
       - ssl_data:/var/lib/https-portal
       - ssl_data:/var/log/nginx
-    #      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf  #有効化するとエラーになる
+      - ./docker/nginx/default.conf.erb:/var/lib/nginx-conf/my.example.com.conf.erb:ro
+      - ./docker/nginx/default.ssl.conf.erb:https_config:/var/lib/nginx-conf/my.example.com.ssl.conf.erb:ro
+#      参考情報
+#    https://roy-n-roy.nyan-co.page/Docker/%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E5%8C%96/Django/#uwsgi
     networks:
       - container_link
 
