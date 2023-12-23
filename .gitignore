@@ -19,3 +19,4 @@ docker/mosquitto/log/mosquitto.log
 docker/mosquitto/data/mosquitto.db
 *.pyc
 docker/mosquitto/log/mosquitto.log
+docker/mosquitto/data/mosquitto.db
